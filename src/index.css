@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-kisan: #FAF8F5;
+  --color-primary: #1B4332;
+  --color-secondary: #2D6A4F;
+  --color-accent: #D97706;
+}
+
+body {
+  background-color: #FAF8F5;
+  color: #1F2937;
+  font-family: 'Noto Sans Devanagari', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F3F4F6;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
+}
+
+/* Pulse animation for voice recording */
+@keyframes micPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.6);
+    transform: scale(1);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(220, 38, 38, 0);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+    transform: scale(1);
+  }
+}
+
+.mic-recording {
+  animation: micPulse 1.6s infinite cubic-bezier(0.66, 0, 0, 1);
+  background-color: #DC2626 !important;
+}
+
+.kisan-card {
+  background: #FFFFFF;
+  border: 1px solid #E8E3D9;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px -1px rgba(27, 67, 50, 0.04), 0 1px 3px -1px rgba(27, 67, 50, 0.02);
+  transition: all 0.2s ease-in-out;
+}
+
+.kisan-card:hover {
+  box-shadow: 0 6px 14px -2px rgba(27, 67, 50, 0.07), 0 2px 4px -2px rgba(27, 67, 50, 0.03);
+}
+
+.gradient-header {
+  background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 60%, #40916C 100%);
+}
