@@ -1,6 +1,7 @@
 import { FarmProfile, NextQuestion, ComparisonResponse, Plan, SoilData, MandiAdviceResponse } from '../types';
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://gdg-qyvl.onrender.com/api';
+const rawBaseUrl = (import.meta.env.VITE_API_BASE_URL as string || 'https://gdg-qyvl.onrender.com/api').trim().replace(/\/+$/, '');
+const API_BASE = rawBaseUrl.endsWith('/api') ? rawBaseUrl : `${rawBaseUrl}/api`;
 const SESSION_STORAGE_KEY = 'kisan_ai_session_id';
 
 function getSessionId(): string | null {
@@ -29,7 +30,8 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
     headers.set('Content-Type', 'application/json');
   }
 
-  const url = `${API_BASE}${endpoint}`;
+  const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+  const url = `${API_BASE}${cleanEndpoint}`;
   const response = await fetch(url, {
     ...options,
     headers,

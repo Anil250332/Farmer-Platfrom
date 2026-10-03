@@ -171,8 +171,12 @@ export const VoiceLiveWidget: React.FC<VoiceLiveWidgetProps> = ({
         return;
       }
 
-      const wsUrlBase = import.meta.env.VITE_WS_URL || window.location.origin.replace(/^http/, 'ws');
-      const wsUrl = `${wsUrlBase.replace(/^http/, 'ws')}/api/voice/gemini-stream?sessionId=${sessionId}`;
+      const defaultWsBase = (import.meta.env.VITE_API_BASE_URL as string || '')
+        .replace(/\/api\/?$/, '')
+        .replace(/^http/, 'ws');
+      const rawWsUrl = import.meta.env.VITE_WS_URL || defaultWsBase || window.location.origin.replace(/^http/, 'ws');
+      const wsUrlBase = rawWsUrl.trim().replace(/\/+$/, '').replace(/^http/, 'ws');
+      const wsUrl = `${wsUrlBase}/api/voice/gemini-stream?sessionId=${sessionId}`;
 
       const player = new PCMPlayer(24000);
       player.init();
