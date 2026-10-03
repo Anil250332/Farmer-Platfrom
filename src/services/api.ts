@@ -1,6 +1,6 @@
 import { FarmProfile, NextQuestion, ComparisonResponse, Plan, SoilData, MandiAdviceResponse } from '../types';
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://gdg-qyvl.onrender.com/api';
 const SESSION_STORAGE_KEY = 'kisan_ai_session_id';
 
 function getSessionId(): string | null {
